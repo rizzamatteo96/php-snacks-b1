@@ -13,7 +13,19 @@
   if(strlen($name) > 3 && (strpos($mail, '@') && strpos($mail, '.')) && is_numeric($age)){
     echo 'Accesso riuscito';
   } else{
-    echo 'accesso negato';
+    $msg = 'Accesso negato per i seguenti motivi: ';
+    
+    if(strlen($name) <= 3){
+      $msg .= 'nome troppo corto; ';
+    }
+    if(!strpos($mail, '@') || !strpos($mail, '.')){
+      $msg .= 'manca la chiocciola o il punto nella mail; ';
+    }
+    if(!is_numeric($age)){
+      $msg .= 'l\'età inserita non è un numero';
+    }
+
+    echo $msg;
   }
 
 ?>
